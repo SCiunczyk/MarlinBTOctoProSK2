@@ -1239,7 +1239,7 @@
 /**
  * Enable support for M92. Disable to save at least ~530 bytes of flash.
  */
-define EDITABLE_STEPS_PER_UNIT
+#define EDITABLE_STEPS_PER_UNIT
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1496,6 +1496,7 @@ define EDITABLE_STEPS_PER_UNIT
  *          Take extreme care when setting up this feature.
  */
 //#define SENSORLESS_PROBING
+#define DIAG_JUMPERS_REMOVED
 
 /**
  * Allen key retractable z-probe as seen on many Kossel delta printers - https://reprap.org/wiki/Kossel#Autolevel_probe
