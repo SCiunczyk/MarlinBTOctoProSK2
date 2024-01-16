@@ -536,7 +536,7 @@
       #define TFT_BACKLIGHT_PIN LCD_BACKLIGHT_PIN
 
       #define TOUCH_BUTTONS_HW_SPI
-      #define TOUCH_BUTTONS_HW_SPI_DEVICE 1
+      #define TOUCH_BUTTONS_HW_SPI_DEVICE      1
 
       #define TOUCH_CS_PIN           EXP1_05_PIN  // SPI1_NSS
       #define TOUCH_SCK_PIN          EXP2_02_PIN  // SPI1_SCK
@@ -546,7 +546,7 @@
       #define LCD_READ_ID                   0xD3
       #define LCD_USE_DMA_SPI
 
-      #define TFT_BUFFER_SIZE              14400
+      #define TFT_BUFFER_WORDS             14400
 
       #ifndef TOUCH_CALIBRATION_X
         #define TOUCH_CALIBRATION_X       -17253

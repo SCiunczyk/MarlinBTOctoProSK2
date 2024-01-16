@@ -2,6 +2,9 @@
  * Marlin 3D Printer Firmware
  * Copyright (c) 2022 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
+ * Based on Sprinter and grbl.
+ * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -17,12 +20,10 @@
  **/
 
 #include "../../../inc/MarlinConfigPre.h"
-#include "../tft_image.h"
 
 #if HAS_GRAPHICAL_TFT
 
-extern const uint8_t time_remaining_32x32x4[];
-const tImage Time_Remaining_32x32x4 = { (void *)time_remaining_32x32x4, 32, 32, GREYSCALE4 };
+#include "../tft_image.h"
 
 const uint8_t time_remaining_32x32x4[512] = {
   0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88,
@@ -58,4 +59,7 @@ const uint8_t time_remaining_32x32x4[512] = {
   0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x86, 0x56, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88,
   0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88,
 };
+
+const tImage Time_Remaining_32x32x4 = { (void *)time_remaining_32x32x4, 32, 32, GREYSCALE4 };
+
 #endif // HAS_GRAPHICAL_TFT
