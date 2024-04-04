@@ -323,6 +323,13 @@
   #define HAS_LINEAR_E_JERK 1
 #endif
 
+// Some displays can toggle Adaptive Step Smoothing.
+// The state is saved to EEPROM.
+// In future this may be added to a G-code such as M205 A.
+#if ALL(ADAPTIVE_STEP_SMOOTHING, DWIN_LCD_PROUI)
+  #define ADAPTIVE_STEP_SMOOTHING_TOGGLE
+#endif
+
 /**
  * Temperature Sensors; define what sensor(s) we have.
  */
@@ -869,6 +876,24 @@
   #define HAS_ENCODER_ACTION 1
 #endif
 
+#if ENABLED(ENCODER_RATE_MULTIPLIER)
+  #ifndef ENCODER_5X_STEPS_PER_SEC
+    #define ENCODER_5X_STEPS_PER_SEC 0
+  #endif
+  #ifndef ENCODER_10X_STEPS_PER_SEC
+    #define ENCODER_10X_STEPS_PER_SEC 0
+  #endif
+  #ifndef ENCODER_100X_STEPS_PER_SEC
+    #define ENCODER_100X_STEPS_PER_SEC 0
+  #endif
+  #if !((HAS_MARLINUI_MENU || HAS_DWIN_E3V2) && (ENCODER_5X_STEPS_PER_SEC || ENCODER_10X_STEPS_PER_SEC || ENCODER_100X_STEPS_PER_SEC))
+    #undef ENCODER_RATE_MULTIPLIER
+    #undef ENCODER_5X_STEPS_PER_SEC
+    #undef ENCODER_10X_STEPS_PER_SEC
+    #undef ENCODER_100X_STEPS_PER_SEC
+  #endif
+#endif
+
 #if STATUS_MESSAGE_TIMEOUT_SEC > 0
   #define HAS_STATUS_MESSAGE_TIMEOUT 1
 #endif
@@ -1363,6 +1388,11 @@
 #endif
 
 // Power-Loss Recovery
-#if ENABLED(POWER_LOSS_RECOVERY) && defined(PLR_BED_THRESHOLD)
-  #define HAS_PLR_BED_THRESHOLD 1
+#if ENABLED(POWER_LOSS_RECOVERY)
+  #ifdef PLR_BED_THRESHOLD
+    #define HAS_PLR_BED_THRESHOLD 1
+  #endif
+  #if ANY(DWIN_CREALITY_LCD, DWIN_LCD_PROUI)
+    #define HAS_PLR_UI_FLAG 1   // recovery.ui_flag_resume
+  #endif
 #endif
